@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.452.0",
@@ -16,6 +17,8 @@
     "numeral": "^2.0.6",
     "react": "^18",
     "react-dom": "^18",
+    "react-redux": "^9.1.2",
+    "redux-persist": "^6.0.0",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
     "tw-colors": "^3.3.2",
