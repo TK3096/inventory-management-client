@@ -18,6 +18,7 @@
     "react-dom": "^18",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
+    "tw-colors": "^3.3.2",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

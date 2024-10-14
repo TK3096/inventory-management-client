@@ -1,5 +1,64 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Config } from 'tailwindcss'
 import tailwindcssAnimate from 'tailwindcss-animate'
+import { createThemes } from 'tw-colors'
+import colors from 'tailwindcss/colors'
+
+const baseColors = [
+  'gray',
+  'red',
+  'yellow',
+  'green',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+]
+
+const shadeMapping = {
+  '50': '900',
+  '100': '800',
+  '200': '700',
+  '300': '600',
+  '400': '500',
+  '500': '400',
+  '600': '300',
+  '700': '200',
+  '800': '100',
+  '900': '50',
+}
+
+const generateThemeObjevt = (colors: any, mapping: any, invert = false) => {
+  const theme: any = {}
+
+  baseColors.forEach((color) => {
+    theme[color] = {}
+
+    Object.entries(mapping).forEach(([key, value]) => {
+      const shadeKey = invert ? value : key
+      theme[color][key] = (colors as Record<string, any>)[color][
+        shadeKey as keyof (typeof colors)[string]
+      ]
+    })
+  })
+
+  return theme
+}
+
+const lightTheme = generateThemeObjevt(colors, shadeMapping)
+const darkTheme = generateThemeObjevt(colors, shadeMapping, true)
+
+const themes = {
+  light: {
+    ...lightTheme,
+    white: '#fff',
+  },
+  dark: {
+    ...darkTheme,
+    white: colors.gray[950],
+    black: colors.gray[50],
+  },
+}
 
 const config: Config = {
   darkMode: ['class'],
@@ -59,6 +118,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [tailwindcssAnimate, createThemes(themes)],
 }
 export default config
